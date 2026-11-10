@@ -5,7 +5,7 @@
     "name": "辉煌帝"
   },
   "category": "工具",
-  "changelog": "1.变更记录增加变更详情。\n2.增加回滚按钮。",
+  "changelog": "迁移到新版本",
   "conflicts": [],
   "delisted": false,
   "description": "启用并重启服务端后，进模组目录（启动器「打开 mods 目录」→ evejs-attribute-editor）双击 Start-Editor.bat 打开本地修改器；改值只写增量 overlay，随时可回滚。出厂空表，默认不改任何数值。",
@@ -14,11 +14,11 @@
     {
       "mirror": "github",
       "priority": 1,
-      "url": "https://github.com/huihuangdi/evejs-mod-evejs-attribute-editor/releases/download/v1.0.1/evejs-attribute-editor-1.0.1.zip"
+      "url": "https://github.com/huihuangdi/evejs-mod-evejs-attribute-editor/releases/download/v1.1.1/evejs-attribute-editor-1.1.1.zip"
     }
   ],
   "evejsVersions": [
-    "261028.x"
+    "261108.x"
   ],
   "featured": false,
   "highlights": [
@@ -31,18 +31,18 @@
   ],
   "history": [],
   "id": "evejs-attribute-editor",
-  "publishedAt": "2026-11-07",
+  "publishedAt": "2026-11-10",
   "readme": [
     "给 EveJS 加一层**可编辑的属性覆盖**，并附带一个只监听本机的网页修改器。\n装上默认**不改任何数值**：overlay 是空表，服务端与客户端都保持原版；改什么由你在修改器里决定。"
   ],
   "repo": "https://github.com/huihuangdi/evejs-mod-evejs-attribute-editor",
   "requiresRestart": true,
-  "sha256": "0ab311ff2b319c4f18b7030a943465ef7378de80bbe08da0feda6fcfb3f71c1a",
-  "sizeBytes": 2771073,
+  "sha256": "e3b6519d72662f188806364fb893f4f7c0eb562804d6b6920f1b2f5f54d63357",
+  "sizeBytes": 2772936,
   "tags": [
     "属性",
     "编辑器",
     "工具"
   ],
-  "version": "1.0.1"
+  "version": "1.1.1"
 }
