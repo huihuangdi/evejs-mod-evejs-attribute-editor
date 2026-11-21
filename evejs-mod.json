@@ -5,20 +5,20 @@
     "name": "辉煌帝"
   },
   "category": "工具",
-  "changelog": "迁移到新版本",
+  "changelog": "迁移用户文件出MOD。",
   "conflicts": [],
   "delisted": false,
-  "description": "启用并重启服务端后，进模组目录（启动器「打开 mods 目录」→ evejs-attribute-editor）双击 Start-Editor.bat 打开本地修改器；改值只写增量 overlay，随时可回滚。出厂空表，默认不改任何数值。",
+  "description": "本地属性修改器：改值只写增量 overlay（随时可回滚），支持属性、货柜容量与弹药体积。1.4.0 起不再随包带 26.7MB 静态表，整表重建的基线改为从客户端现场导出（首次约 1–3 秒，日志会写耗时），发布包由 32.5MB 降到约 7.5MB；用户数据（overlay / 历史 / 部署状态 / 日志）在 _local/mods/evejs-attribute-editor/，不随包发布，旧位置首次启动自动迁移。",
   "displayName": "属性修改器",
   "downloadUrls": [
     {
       "mirror": "github",
       "priority": 1,
-      "url": "https://github.com/huihuangdi/evejs-mod-evejs-attribute-editor/releases/download/v1.1.1/evejs-attribute-editor-1.1.1.zip"
+      "url": "https://github.com/huihuangdi/evejs-mod-evejs-attribute-editor/releases/download/v1.4.1/evejs-attribute-editor-1.4.1.zip"
     }
   ],
   "evejsVersions": [
-    "261108.x"
+    "261115.x"
   ],
   "featured": false,
   "highlights": [
@@ -27,22 +27,25 @@
     "✓ 手动路径：`<EVEJS 根>/mods/evejs-attribute-editor/Start-Editor.bat`",
     "✓ 运行前提：Node.js 18+；浏览器自动打开 `http://127.0.0.1:26100`，只监听本机",
     "✓ 改值只写增量 overlay（`set` / `delete` / 恢复 base），基础 `data.json` 字节不变，随时可回滚",
-    "✓ 服务端重启后生效；客户端由服务端启动后自动同步（或手动 `Sync-Client.bat --apply`）"
+    "✓ 服务端重启后生效；客户端由服务端启动后自动同步（或双击 `Sync-Client.bat` → 选 2 部署）",
+    "✓ **货柜容量（舰船「初始模板」）**：船体属性表多一行「货柜容量（初始模板）」（属性 38，带「模板」徽标），",
+    "✓ **弹药体积（1.2.0 新增）**：弹药（categoryID 8，1,156 型）属性表多一行「体积」（属性 161，带「类型行」徽标），",
+    "✓ **与「突变扩展」共存（1.2.1）**：同步后自动把它 types/typedogma 的新索引行认账进它的 state，"
   ],
   "history": [],
   "id": "evejs-attribute-editor",
-  "publishedAt": "2026-11-10",
+  "publishedAt": "2026-11-21",
   "readme": [
     "给 EveJS 加一层**可编辑的属性覆盖**，并附带一个只监听本机的网页修改器。\n装上默认**不改任何数值**：overlay 是空表，服务端与客户端都保持原版；改什么由你在修改器里决定。"
   ],
   "repo": "https://github.com/huihuangdi/evejs-mod-evejs-attribute-editor",
   "requiresRestart": true,
-  "sha256": "e3b6519d72662f188806364fb893f4f7c0eb562804d6b6920f1b2f5f54d63357",
-  "sizeBytes": 2772936,
+  "sha256": "ab2c50dce3de9a5f945d12ad80c9834d87b0d4e6542781e7890d7c848b759b48",
+  "sizeBytes": 1542880,
   "tags": [
     "属性",
     "编辑器",
     "工具"
   ],
-  "version": "1.1.1"
+  "version": "1.4.1"
 }
