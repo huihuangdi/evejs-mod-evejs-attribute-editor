@@ -8,44 +8,43 @@
   "changelog": "",
   "conflicts": [],
   "delisted": false,
-  "description": "本地属性修改器：改值只写增量 overlay（随时可回滚），支持属性、货柜容量与弹药体积。1.4.0 起不再随包带 26.7MB 静态表，整表重建的基线改为从客户端现场导出（首次约 1–3 秒，日志会写耗时），发布包由 32.5MB 降到约 7.5MB；1.4.2 修好 261115 服务端的货柜容量（容量同时写 itemTypes.capacity 并清理 Dogma 图缓存，否则按原值判定「已满」）；用户数据（overlay / 历史 / 部署状态 / 日志）在 _local/mods/evejs-attribute-editor/，不随包发布，旧位置首次启动自动迁移。",
+  "description": "同步修改客户端与服务器 属性的修改器：网页改已有属性的数值、舰船货柜容量（初始模板）与弹药体积，删条目即回滚。客户端静态表统一由 fsd-hub 发布，本模组只提交声明式 spec。",
   "displayName": "属性修改器",
   "downloadUrls": [
     {
       "mirror": "github",
       "priority": 1,
-      "url": "https://github.com/huihuangdi/evejs-mod-evejs-attribute-editor/releases/download/v1.4.3/evejs-attribute-editor-1.4.3.zip"
+      "url": "https://github.com/huihuangdi/evejs-mod-evejs-attribute-editor/releases/download/v1.5.1/evejs-attribute-editor-1.5.1.zip"
     }
   ],
   "evejsVersions": [
-    "261115.x"
+    "261125.x"
   ],
   "featured": false,
   "highlights": [
-    "✓ 打开方式：启动器 → Mod / Plugin → **已安装** → 右上「**打开 mods 目录**」→ 进",
-    "✓ 更快的方式：打开本模组详情（能看到「打开所在目录」的弹窗）→「打开所在目录」→ 双击 `Start-Editor.bat`",
-    "✓ 手动路径：`<EVEJS 根>/mods/evejs-attribute-editor/Start-Editor.bat`",
-    "✓ 运行前提：Node.js 18+；浏览器自动打开 `http://127.0.0.1:26100`，只监听本机",
-    "✓ 改值只写增量 overlay（`set` / `delete` / 恢复 base），基础 `data.json` 字节不变，随时可回滚",
-    "✓ 服务端重启后生效；客户端由服务端启动后自动同步（或双击 `Sync-Client.bat` → 选 2 部署）",
-    "✓ **货柜容量（舰船「初始模板」）**：船体属性表多一行「货柜容量（初始模板）」（属性 38，带「模板」徽标），",
-    "✓ **弹药体积（1.2.0 新增）**：弹药（categoryID 8，1,156 型）属性表多一行「体积」（属性 161，带「类型行」徽标），",
-    "✓ **与「突变扩展」共存（1.2.1）**：同步后自动把它 types/typedogma 的新索引行认账进它的 state，"
+    "装上默认**不改任何数值**：overlay 为空时服务端保持基础数据，也不会向 fsd-hub 提交任何东西。",
+    "只写增量 overlay（`set` / `delete`），基础静态表字节不变，随时可清空回原版。",
+    "支持改**已有属性**的数值、给类型挂上**已存在**的属性定义、删除某类型上的属性键。",
+    "**货柜容量（初始模板，属性 38）**：船体属性表多一行「货柜容量（初始模板）」，单船或批量可改；服务端同时镜像写 `itemTypes.capacity` 并清一次 Dogma 图缓存。",
+    "**弹药体积（属性 161，categoryID 8）**：单条/批量可改；服务端重置 `itemTypeRegistry` 让货舱与装填生效，客户端由 fsd-hub 写 `types.fsdbinary`。",
+    "批量修改支持按分类 / 市场树 / 谓词选目标，固定值、乘系数、百分比、加增量都记录范围与运算。",
+    "修改器带「变更记录」页：每次提交可看逐条明细，并按 LIFO 一键回滚。"
   ],
   "history": [],
   "id": "evejs-attribute-editor",
-  "publishedAt": "2026-11-21",
+  "publishedAt": "2026-11-27",
   "readme": [
-    "给 EveJS 加一层**可编辑的属性覆盖**，并附带一个只监听本机的网页修改器。\n装上默认**不改任何数值**：overlay 是空表，服务端与客户端都保持原版；改什么由你在修改器里决定。"
+    "overlay 是唯一改动来源，结构为 `tables.typeDogma`（属性改值 / 删属性）与 `tables.typeFields`（目前只开放 `volume`）。\n服务端启动后由 `loader.js` 把 overlay 应用到 `referenceData` 的进程内缓存（`typeDogma`、`shipDogmaAttributes`、`itemTypes` 类型行），\n不写磁盘、不改服务端源码；唯一的源码补丁是 append 一个 `__attrEditorResetItemTypeRegistry()` 开关，用来清 `itemTypeRegistry` 的一次性快照。",
+    "客户端数据不由本模组写：`tools/fsd-spec.js` 把 overlay 变成 fsd-hub 的贡献 spec（`typedogma.set` / `typedogma.removeAttribute` / `types.set`），\n由 hub 从 base 重放并发布。删除属性时 hub 会拦下被 `dynamicitemattributes` mutator 引用的属性（否则客户端 `FindMutatedAttributes` 会 `KeyError`）。"
   ],
   "repo": "https://github.com/huihuangdi/evejs-mod-evejs-attribute-editor",
   "requiresRestart": true,
-  "sha256": "6c813c09da0d49b09e2e538c24c9740fb6fa78ce0f24d9fc22d5d9d9e07b6e16",
-  "sizeBytes": 1548309,
+  "sha256": "524dede8a04d3042f8f39db05c0edf1cec3cc06f9aef4500099c4e69f96e1d0e",
+  "sizeBytes": 3329669,
   "tags": [
     "属性",
     "编辑器",
     "工具"
   ],
-  "version": "1.4.3"
+  "version": "1.5.1"
 }
